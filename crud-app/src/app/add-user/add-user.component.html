@@ -1,3 +1,23 @@
-<p>
-  add-user works!
-</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <p>
+      <label for="firstname">Fisrtname</label>
+      <input type="text" formControlName="firstname" [(ngModel)]="user.firstname">
+  </p>
+  <p>
+      <label for="username">Username</label>
+      <input type="text" formControlName="username" [(ngModel)]="user.username">
+  </p>
+  <p>
+      <label for="age">Age</label>
+      <select formControlName="age" id="" [(ngModel)]="user.age">
+        <option *ngFor="let ageValue of ages" value="ageValue">{{ageValue}}</option>
+      </select>
+  </p>
+  <p>
+      <label for="salary">Salary</label>
+      <input type="number" formControlName="salary" [(ngModel)]="user.salary">
+  </p>
+  <button type="submit" [disabled]="!userForm.valid">Valider</button>
+  <p *ngIf="dataSent">Création bien effectuée</p>
+
+</form>
