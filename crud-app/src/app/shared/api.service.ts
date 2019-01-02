@@ -12,28 +12,24 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  login(loginPayload): Observable<any>{
-    return this.http.post<any>('http://localhost:59894/' + 'token/generate-token', loginPayload)
+  getUsers(): Observable<User[]>{
+    return this.http.get<User[]>(this.baseUrl); 
   }
 
-  getUsers(): Observable<any>{
-    return this.http.get(this.baseUrl); 
-  }
-
-  getUserById(id: number): Observable<any>{
-    return this.http.get(this.baseUrl + id);
+  getUserById(id: number): Observable<User>{
+    return this.http.get<User>(this.baseUrl + id);
   }
 
   checkUserByEmail(username: string): Observable<any>{
     return this.http.post<any>(this.baseUrl + "/registering/username", username); 
   }
 
-  createUser(user: User): Observable<any>{
-    return this.http.post(this.baseUrl, user);
+  createUser(user: User): Observable<User>{
+    return this.http.post<User>(this.baseUrl, user);
   }
 
-  updateUser(user: User): Observable<any> {
-    return this.http.put(this.baseUrl, user);
+  updateUser(user: User): Observable<User> {
+    return this.http.put<User>(this.baseUrl, user);
   }
 
   deleteUser(id: number){
